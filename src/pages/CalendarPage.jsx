@@ -3,68 +3,65 @@ import {
   ChevronLeft,
   ChevronRight,
   Plus,
-  Calendar as CalendarIcon,
   Clock,
-  CheckCircle2,
-  Tag,
 } from "lucide-react";
 
 export default function CalendarPage() {
-  const [currentView, setCurrentView] = useState("Month");
+  const [currentView, setCurrentView] = useState("month");
 
   const events = [
     {
       id: 1,
-      title: "Finalize UI Colors",
-      time: "09:00 AM",
+      title: "Chốt bảng màu giao diện",
+      time: "09:00",
       day: 1,
       type: "task",
-      priority: "High",
+      priority: "Cao",
       priorityBg: "bg-[#E54D38]",
     },
     {
       id: 2,
       title: "Họp báo cáo tiến độ SAP",
-      time: "02:00 PM",
+      time: "14:00",
       day: 1,
       type: "event",
-      priority: "Medium",
+      priority: "Vừa",
       priorityBg: "bg-[#9ACD32]",
     },
     {
       id: 3,
-      title: "Change UI Colors",
-      time: "10:00 AM",
+      title: "Điều chỉnh màu giao diện",
+      time: "10:00",
       day: 5,
       type: "task",
-      priority: "Medium",
+      priority: "Vừa",
       priorityBg: "bg-[#9ACD32]",
     },
     {
       id: 4,
-      title: "Submit UI Colors Report",
-      time: "11:00 AM",
+      title: "Nộp báo cáo màu giao diện",
+      time: "11:00",
       day: 12,
       type: "task",
-      priority: "Low",
+      priority: "Thấp",
       priorityBg: "bg-[#4285F4]",
     },
     {
       id: 5,
       title: "Nộp bài tập thảo luận nhóm",
-      time: "05:00 PM",
+      time: "17:00",
       day: 18,
       type: "deadline",
-      priority: "High",
+      priority: "Cao",
       priorityBg: "bg-[#E54D38]",
     },
     {
       id: 6,
       title: "Review lại giao diện TaskFlow",
-      time: "08:30 AM",
+      time: "08:30",
       day: 25,
       type: "task",
-      priority: "Low",
+      priority: "Thấp",
       priorityBg: "bg-[#4285F4]",
     },
   ];
@@ -72,41 +69,45 @@ export default function CalendarPage() {
   const daysInMonth = Array.from({ length: 31 }, (_, i) => i + 1);
 
   return (
-    <div className="max-w-350 mx-auto px-8 py-6 space-y-6">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Calendar</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Lịch</h1>
           <p className="text-gray-400 text-sm mt-1">
-            Theo dõi thời gian biểu, deadline và sự kiện theo lịch.
+            Theo dõi thời gian biểu, hạn chót và sự kiện theo lịch.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* Month / Week / Day */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+          {/* Chế độ xem lịch */}
           <div className="bg-white border border-gray-200 rounded-xl p-1 flex items-center text-xs font-medium text-gray-500">
-            {["Month", "Week", "Day"].map((view) => (
+            {[
+              { value: "month", label: "Tháng" },
+              { value: "week", label: "Tuần" },
+              { value: "day", label: "Ngày" },
+            ].map((view) => (
               <button
-                key={view}
-                onClick={() => setCurrentView(view)}
+                key={view.value}
+                onClick={() => setCurrentView(view.value)}
                 className={`px-3 py-1.5 rounded-lg transition-all ${
-                  currentView === view
+                  currentView === view.value
                     ? "bg-gray-900 text-white font-semibold shadow-sm"
                     : "hover:text-gray-900"
                 }`}
               >
-                {view === "Month" ? "Tháng" : view === "Week" ? "Tuần" : "Ngày"}
+                {view.label}
               </button>
             ))}
           </div>
 
-          <button className="flex items-center gap-2 bg-[#4C75F2] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-xl text-sm shadow-md shadow-blue-500/20 transition-all">
+          <button className="flex items-center justify-center gap-2 bg-[#4C75F2] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-xl text-sm shadow-md shadow-blue-500/20 transition-all">
             <Plus className="w-4 h-4" />
             <span>Thêm sự kiện</span>
           </button>
         </div>
       </div>
 
-      <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+      <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-bold text-gray-900">Tháng 8, 2026</h2>
           <span className="text-xs bg-blue-50 text-[#4C75F2] font-semibold px-2.5 py-1 rounded-full">
@@ -125,15 +126,16 @@ export default function CalendarPage() {
       </div>
 
       {/* Calendar */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-x-auto">
+        <div className="min-w-[780px]">
         <div className="grid grid-cols-7 border-b border-gray-100 bg-gray-50/50 text-center text-xs font-semibold text-gray-400 py-3">
-          <span>T2 (MON)</span>
-          <span>T3 (TUE)</span>
-          <span>T4 (WED)</span>
-          <span>T5 (THU)</span>
-          <span>T6 (FRI)</span>
-          <span>T7 (SAT)</span>
-          <span>CN (SUN)</span>
+          <span>T2</span>
+          <span>T3</span>
+          <span>T4</span>
+          <span>T5</span>
+          <span>T6</span>
+          <span>T7</span>
+          <span>CN</span>
         </div>
 
         <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-gray-100">
@@ -182,6 +184,7 @@ export default function CalendarPage() {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
     </div>

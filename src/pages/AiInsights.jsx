@@ -16,13 +16,13 @@ export default function AiInsights() {
 
   const subtasksDemo = [
     "Phân tích UI/UX đối thủ & chốt bảng màu giao diện TaskFlow",
-    "Dựng Layout tĩnh cho các trang Dashboard, My Tasks & Calendar",
+    "Dựng bố cục tĩnh cho các trang Tổng quan, Công việc & Lịch",
     "Cấu hình React Router DOM cho toàn bộ hệ thống điều hướng",
-    "Tích hợp API Gemini AI cho tính năng tự động gợi ý sub-task",
+    "Tích hợp API Gemini AI cho tính năng tự động gợi ý công việc con",
   ];
 
   return (
-    <div className="max-w-350 mx-auto px-8 py-6 space-y-6">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* 1. Header Trang */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -30,7 +30,7 @@ export default function AiInsights() {
             <div className="p-2 bg-indigo-100 rounded-xl text-indigo-600">
               <Sparkles className="w-5 h-5" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">AI Insights</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Trợ lý AI</h1>
           </div>
           <p className="text-gray-400 text-sm mt-1">
             Phân tích hiệu suất làm việc & trợ lý AI đề xuất lộ trình tối ưu cho
@@ -40,18 +40,18 @@ export default function AiInsights() {
 
         <div className="flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-3 py-1.5 rounded-full text-xs font-semibold text-indigo-600">
           <Bot className="w-4 h-4" />
-          <span>TaskFlow AI Model v2.4 Active</span>
+          <span>Mô hình TaskFlow AI v2.4 đang hoạt động</span>
         </div>
       </div>
 
       {/* 2. Top Banner: Gợi ý nhiệm vụ quan trọng nhất trong ngày */}
-      <div className="bg-linear-to-r from-indigo-600 via-indigo-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg shadow-indigo-500/20 space-y-4">
-        <div className="flex items-center justify-between">
+      <div className="bg-linear-to-r from-indigo-600 via-indigo-500 to-blue-600 text-white p-5 sm:p-6 rounded-2xl shadow-lg shadow-indigo-500/20 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-medium backdrop-blur-md flex items-center gap-1.5">
             <Zap className="w-3.5 h-3.5 text-yellow-300" />
             Gợi ý tập trung trong ngày
           </span>
-          <span className="text-xs opacity-80">Cập nhật lúc 08:00 AM</span>
+          <span className="text-xs opacity-80">Cập nhật lúc 08:00</span>
         </div>
 
         <div className="max-w-2xl space-y-2">
@@ -59,9 +59,9 @@ export default function AiInsights() {
             Hoàn thiện báo cáo tiến độ hệ thống SAP
           </h2>
           <p className="text-xs text-indigo-100 leading-relaxed">
-            Dựa trên deadline sắp tới, AI nhận thấy bạn có bài thuyết trình quan
+            Dựa trên hạn chót sắp tới, AI nhận thấy bạn có bài thuyết trình quan
             trọng. Hãy dành 45 phút tập trung xử lý xong công việc này trước
-            11:00 AM để đạt hiệu suất tốt nhất.
+            11:00 để đạt hiệu suất tốt nhất.
           </p>
         </div>
 
@@ -76,16 +76,16 @@ export default function AiInsights() {
         {/* Cột Trái (2 phần): AI Task Breakdown Tool */}
         <div className="lg:col-span-2 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-5">
           <div className="flex items-center justify-between border-b border-gray-100 pb-4">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-start sm:items-center gap-2.5">
               <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
                 <BrainCircuit className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 text-base">
-                  AI Task Generator (Chia nhỏ mục tiêu)
+                  Trình tạo công việc AI
                 </h3>
                 <p className="text-xs text-gray-400">
-                  Nhập mục tiêu lớn, AI sẽ tự động phân rã thành các task nhỏ cụ
+                  Nhập mục tiêu lớn, AI sẽ tự động phân rã thành các công việc nhỏ cụ
                   thể.
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default function AiInsights() {
           </div>
 
           {/* Ô Nhập Input */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
             <input
               type="text"
               value={prompt}
@@ -101,18 +101,18 @@ export default function AiInsights() {
               placeholder="Ví dụ: Xây dựng giao diện ứng dụng TaskFlow..."
               className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-indigo-500 transition-all"
             />
-            <button className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm">
+            <button className="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Phân tích</span>
             </button>
           </div>
 
-          {/* Kết quả Sub-tasks gợi ý */}
+          {/* Kết quả công việc con gợi ý */}
           <div className="space-y-3 pt-2">
-            <div className="flex items-center justify-between text-xs text-gray-500 font-medium">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-gray-500 font-medium">
               <span>Danh sách công việc con đề xuất:</span>
               <span className="text-indigo-600 font-semibold cursor-pointer hover:underline">
-                + Thêm tất cả vào TaskList
+                + Thêm tất cả vào danh sách công việc
               </span>
             </div>
 
@@ -124,11 +124,11 @@ export default function AiInsights() {
                 >
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    <span className="text-xs font-medium text-gray-700">
+                    <span className="text-xs font-medium text-gray-700 leading-relaxed">
                       {subtask}
                     </span>
                   </div>
-                  <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="hidden sm:inline text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
                     Ước tính: 1-2 giờ
                   </span>
                 </div>
@@ -154,7 +154,7 @@ export default function AiInsights() {
                   vàng:
                 </span>
                 <span className="font-bold text-gray-900">
-                  09:00 - 11:00 AM
+                  09:00 - 11:00
                 </span>
               </div>
               <p className="text-[11px] text-gray-400">
@@ -177,8 +177,8 @@ export default function AiInsights() {
 
             <div className="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100">
               <p className="text-xs text-indigo-900 font-medium leading-relaxed">
-                💡 <strong>Lời khuyên:</strong> Hãy giải quyết các task có độ ưu
-                tiên <strong>High</strong> vào buổi sáng để giải phóng áp lực
+                💡 <strong>Lời khuyên:</strong> Hãy giải quyết các công việc có độ ưu
+                tiên <strong>Cao</strong> vào buổi sáng để giải phóng áp lực
                 công việc cho buổi chiều.
               </p>
             </div>

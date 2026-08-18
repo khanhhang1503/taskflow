@@ -4,43 +4,43 @@ export default function Projects() {
   const projectList = [
     {
       id: 1,
-      name: "New Design System",
-      category: "UI/UX Design",
+      name: "Hệ thống thiết kế mới",
+      category: "Thiết kế UI/UX",
       progress: 80,
-      tasksCount: "12/15 Tasks",
-      dueDate: "27 Mar 2025",
+      tasksCount: "12/15 công việc",
+      dueDate: "27/03/2025",
       color: "bg-[#4C75F2]",
     },
     {
       id: 2,
-      name: "User Interface Redesign for Webx",
-      category: "Web Development",
+      name: "Thiết kế lại giao diện Webx",
+      category: "Phát triển web",
       progress: 45,
-      tasksCount: "5/11 Tasks",
-      dueDate: "03 Apr 2025",
+      tasksCount: "5/11 công việc",
+      dueDate: "03/04/2025",
       color: "bg-[#5B8DF6]",
     },
     {
       id: 3,
-      name: "New Email Templates Design Project",
-      category: "Marketing",
+      name: "Dự án thiết kế mẫu email mới",
+      category: "Tiếp thị",
       progress: 20,
-      tasksCount: "2/10 Tasks",
-      dueDate: "10 Apr 2025",
+      tasksCount: "2/10 công việc",
+      dueDate: "10/04/2025",
       color: "bg-[#8CB800]",
     },
   ];
 
   return (
-    <div className="max-w-[1400px] mx-auto px-8 py-6 space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Projects</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Dự án</h1>
           <p className="text-gray-400 text-sm mt-1">
             Danh sách các dự án đang triển khai.
           </p>
         </div>
-        <button className="flex items-center gap-2 bg-[#4C75F2] hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-xl text-sm shadow-md shadow-blue-500/20">
+        <button className="flex items-center justify-center gap-2 bg-[#4C75F2] hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-xl text-sm shadow-md shadow-blue-500/20">
           <Plus className="w-4 h-4" />
           <span>Dự án mới</span>
         </button>
@@ -88,7 +88,7 @@ export default function Projects() {
               <span className="flex items-center gap-1">
                 <CheckCircle2 className="w-3.5 h-3.5" /> {proj.tasksCount}
               </span>
-              <span>Due: {proj.dueDate}</span>
+              <span>Hạn chót: {proj.dueDate}</span>
             </div>
           </div>
         ))}
