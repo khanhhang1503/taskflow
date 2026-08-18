@@ -1,0 +1,197 @@
+import { useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  Calendar as CalendarIcon,
+  Clock,
+  CheckCircle2,
+  Tag,
+} from "lucide-react";
+
+export default function CalendarPage() {
+  const [currentView, setCurrentView] = useState("Month"); // Month | Week | Day
+
+  // Danh sách công việc giả lập gắn theo ngày
+  const events = [
+    {
+      id: 1,
+      title: "Finalize UI Colors",
+      time: "09:00 AM",
+      day: 1,
+      type: "task",
+      priority: "High",
+      priorityBg: "bg-[#E54D38]",
+    },
+    {
+      id: 2,
+      title: "Họp báo cáo tiến độ SAP",
+      time: "02:00 PM",
+      day: 1,
+      type: "event",
+      priority: "Medium",
+      priorityBg: "bg-[#9ACD32]",
+    },
+    {
+      id: 3,
+      title: "Change UI Colors",
+      time: "10:00 AM",
+      day: 5,
+      type: "task",
+      priority: "Medium",
+      priorityBg: "bg-[#9ACD32]",
+    },
+    {
+      id: 4,
+      title: "Submit UI Colors Report",
+      time: "11:00 AM",
+      day: 12,
+      type: "task",
+      priority: "Low",
+      priorityBg: "bg-[#4285F4]",
+    },
+    {
+      id: 5,
+      title: "Nộp bài tập thảo luận nhóm",
+      time: "05:00 PM",
+      day: 18,
+      type: "deadline",
+      priority: "High",
+      priorityBg: "bg-[#E54D38]",
+    },
+    {
+      id: 6,
+      title: "Review lại giao diện TaskFlow",
+      time: "08:30 AM",
+      day: 25,
+      type: "task",
+      priority: "Low",
+      priorityBg: "bg-[#4285F4]",
+    },
+  ];
+
+  // Khung lịch 31 ngày đại diện cho Tháng
+  const daysInMonth = Array.from({ length: 31 }, (_, i) => i + 1);
+
+  return (
+    <div className="max-w-[1400px] mx-auto px-8 py-6 space-y-6">
+      {/* 1. Header Trang & Bộ chuyển chế độ xem */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Calendar</h1>
+          <p className="text-gray-400 text-sm mt-1">
+            Theo dõi thời gian biểu, deadline và sự kiện theo lịch.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          {/* Switch Chế độ xem: Month / Week / Day */}
+          <div className="bg-white border border-gray-200 rounded-xl p-1 flex items-center text-xs font-medium text-gray-500">
+            {["Month", "Week", "Day"].map((view) => (
+              <button
+                key={view}
+                onClick={() => setCurrentView(view)}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  currentView === view
+                    ? "bg-gray-900 text-white font-semibold shadow-sm"
+                    : "hover:text-gray-900"
+                }`}
+              >
+                {view === "Month" ? "Tháng" : view === "Week" ? "Tuần" : "Ngày"}
+              </button>
+            ))}
+          </div>
+
+          <button className="flex items-center gap-2 bg-[#4C75F2] hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-xl text-sm shadow-md shadow-blue-500/20 transition-all">
+            <Plus className="w-4 h-4" />
+            <span>Thêm sự kiện</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 2. Thanh điều hướng Tháng / Năm */}
+      <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h2 className="text-lg font-bold text-gray-900">Tháng 8, 2026</h2>
+          <span className="text-xs bg-blue-50 text-[#4C75F2] font-semibold px-2.5 py-1 rounded-full">
+            Hôm nay
+          </span>
+        </div>
+
+        <div className="flex items-center gap-1">
+          <button className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-600 transition-colors">
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button className="p-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-gray-600 transition-colors">
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* 3. Lưới Lịch Tháng (Calendar Grid) */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        {/* Tên các ngày trong tuần */}
+        <div className="grid grid-cols-7 border-b border-gray-100 bg-gray-50/50 text-center text-xs font-semibold text-gray-400 py-3">
+          <span>T2 (MON)</span>
+          <span>T3 (TUE)</span>
+          <span>T4 (WED)</span>
+          <span>T5 (THU)</span>
+          <span>T6 (FRI)</span>
+          <span>T7 (SAT)</span>
+          <span>CN (SUN)</span>
+        </div>
+
+        {/* Ô các ngày trong tháng */}
+        <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-gray-100">
+          {daysInMonth.map((day) => {
+            const dayEvents = events.filter((e) => e.day === day);
+            const isToday = day === 10; // Giả định hôm nay là ngày 10
+
+            return (
+              <div
+                key={day}
+                className={`min-h-[110px] p-2 transition-colors hover:bg-gray-50/50 ${
+                  isToday ? "bg-blue-50/30" : ""
+                }`}
+              >
+                {/* Số ngày */}
+                <div className="flex justify-between items-center mb-1">
+                  <span
+                    className={`text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full ${
+                      isToday ? "bg-[#4C75F2] text-white" : "text-gray-700"
+                    }`}
+                  >
+                    {day}
+                  </span>
+                </div>
+
+                {/* Danh sách Task/Sự kiện nằm trong ngày */}
+                <div className="space-y-1">
+                  {dayEvents.map((evt) => (
+                    <div
+                      key={evt.id}
+                      className="p-1.5 rounded-lg bg-gray-50 border border-gray-100 hover:border-gray-200 cursor-pointer text-[11px] space-y-0.5 transition-all shadow-2xs"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-gray-800 truncate max-w-[90px]">
+                          {evt.title}
+                        </span>
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full ${evt.priorityBg}`}
+                        ></span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[9px] text-gray-400">
+                        <Clock className="w-2.5 h-2.5" />
+                        <span>{evt.time}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
