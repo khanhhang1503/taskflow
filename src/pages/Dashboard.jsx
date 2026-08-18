@@ -90,7 +90,7 @@ export default function Dashboard() {
 
   return (
     <div className="pb-10">
-      <div className="max-w-[1400px] mx-auto px-8 pt-6 space-y-6">
+      <div className="max-w-350 mx-auto px-8 pt-6 space-y-6">
         {/* Welcome & Stats Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>

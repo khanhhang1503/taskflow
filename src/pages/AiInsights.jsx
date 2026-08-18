@@ -22,7 +22,7 @@ export default function AiInsights() {
   ];
 
   return (
-    <div className="max-w-[1400px] mx-auto px-8 py-6 space-y-6">
+    <div className="max-w-350 mx-auto px-8 py-6 space-y-6">
       {/* 1. Header Trang */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -45,7 +45,7 @@ export default function AiInsights() {
       </div>
 
       {/* 2. Top Banner: Gợi ý nhiệm vụ quan trọng nhất trong ngày */}
-      <div className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg shadow-indigo-500/20 space-y-4">
+      <div className="bg-linear-to-r from-indigo-600 via-indigo-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg shadow-indigo-500/20 space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-medium backdrop-blur-md flex items-center gap-1.5">
             <Zap className="w-3.5 h-3.5 text-yellow-300" />

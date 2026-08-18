@@ -10,9 +10,8 @@ import {
 } from "lucide-react";
 
 export default function CalendarPage() {
-  const [currentView, setCurrentView] = useState("Month"); // Month | Week | Day
+  const [currentView, setCurrentView] = useState("Month");
 
-  // Danh sách công việc giả lập gắn theo ngày
   const events = [
     {
       id: 1,
@@ -70,12 +69,10 @@ export default function CalendarPage() {
     },
   ];
 
-  // Khung lịch 31 ngày đại diện cho Tháng
   const daysInMonth = Array.from({ length: 31 }, (_, i) => i + 1);
 
   return (
-    <div className="max-w-[1400px] mx-auto px-8 py-6 space-y-6">
-      {/* 1. Header Trang & Bộ chuyển chế độ xem */}
+    <div className="max-w-350 mx-auto px-8 py-6 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Calendar</h1>
@@ -85,7 +82,7 @@ export default function CalendarPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Switch Chế độ xem: Month / Week / Day */}
+          {/* Month / Week / Day */}
           <div className="bg-white border border-gray-200 rounded-xl p-1 flex items-center text-xs font-medium text-gray-500">
             {["Month", "Week", "Day"].map((view) => (
               <button
@@ -109,7 +106,6 @@ export default function CalendarPage() {
         </div>
       </div>
 
-      {/* 2. Thanh điều hướng Tháng / Năm */}
       <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-bold text-gray-900">Tháng 8, 2026</h2>
@@ -128,9 +124,8 @@ export default function CalendarPage() {
         </div>
       </div>
 
-      {/* 3. Lưới Lịch Tháng (Calendar Grid) */}
+      {/* Calendar */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-        {/* Tên các ngày trong tuần */}
         <div className="grid grid-cols-7 border-b border-gray-100 bg-gray-50/50 text-center text-xs font-semibold text-gray-400 py-3">
           <span>T2 (MON)</span>
           <span>T3 (TUE)</span>
@@ -141,20 +136,18 @@ export default function CalendarPage() {
           <span>CN (SUN)</span>
         </div>
 
-        {/* Ô các ngày trong tháng */}
         <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-gray-100">
           {daysInMonth.map((day) => {
             const dayEvents = events.filter((e) => e.day === day);
-            const isToday = day === 10; // Giả định hôm nay là ngày 10
+            const isToday = day === 10;
 
             return (
               <div
                 key={day}
-                className={`min-h-[110px] p-2 transition-colors hover:bg-gray-50/50 ${
+                className={`min-h-27.5 p-2 transition-colors hover:bg-gray-50/50 ${
                   isToday ? "bg-blue-50/30" : ""
                 }`}
               >
-                {/* Số ngày */}
                 <div className="flex justify-between items-center mb-1">
                   <span
                     className={`text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full ${
@@ -165,7 +158,6 @@ export default function CalendarPage() {
                   </span>
                 </div>
 
-                {/* Danh sách Task/Sự kiện nằm trong ngày */}
                 <div className="space-y-1">
                   {dayEvents.map((evt) => (
                     <div
